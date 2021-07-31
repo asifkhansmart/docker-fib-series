@@ -7,11 +7,20 @@ before_install:
   - docker build -t khan/docker-fib-react -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true khan/docker-fib-react npm run test
+  - docker run -e CI=true khan/docker-fib-react npm test
 
 
 after-success:
   - docker build -t khan/multi-client ./client
-  - docker build -t khan/multi-nginx ./nginx
+  - docker build -t khan/multi-nginx ./nginix
   - docker build -t khan/multi-server ./server
   - docker build -t khan/multi-worker ./worker
+
+#Log in to Docker CLI
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+#Take images and push them docker hub
+- docker push khan/multi-client
+- docker push khan/multi-nginx
+- docker push khan/multi-server
+- docker push khan/multi-worker
