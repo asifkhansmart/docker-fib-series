@@ -16,10 +16,10 @@ after-success:
   - docker build -t khan/multi-worker ./worker
 
 #Log in to Docker CLI
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
 #Take images and push them docker hub
-- docker push khan/multi-client
-- docker push khan/multi-nginx
-- docker push khan/multi-server
-- docker push khan/multi-worker
+  - docker push khan/multi-client
+  - docker push khan/multi-nginx
+  - docker push khan/multi-server
+  - docker push khan/multi-worker
