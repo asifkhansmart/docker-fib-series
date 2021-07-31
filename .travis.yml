@@ -9,7 +9,6 @@ before_install:
 script:
   - docker run -e CI=true khan/docker-fib-react npm test
 
-
 after-success:
   - docker build -t khan/multi-client ./client
   - docker build -t khan/multi-nginx ./nginix
