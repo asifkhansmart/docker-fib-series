@@ -10,16 +10,16 @@ script:
   - docker run -e CI=true khan/docker-fib-react npm run test
 
 after-success:
-  - docker build -t khan/multi-client ./client
-  - docker build -t khan/multi-nginx ./nginix
-  - docker build -t khan/multi-server ./server
-  - docker build -t khan/multi-worker ./worker
+  - docker build -t asifkhansmart/multi-client ./client
+  - docker build -t asifkhansmart/multi-nginx ./nginix
+  - docker build -t asifkhansmart/multi-server ./server
+  - docker build -t asifkhansmart/multi-worker ./worker
 
 #Log in to Docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
 #Take images and push them docker hub
-  - docker push khan/multi-client
-  - docker push khan/multi-nginx
-  - docker push khan/multi-server
-  - docker push khan/multi-worker
+  - docker push asifkhansmart/multi-client
+  - docker push asifkhansmart/multi-nginx
+  - docker push asifkhansmart/multi-server
+  - docker push asifkhansmart/multi-worker
