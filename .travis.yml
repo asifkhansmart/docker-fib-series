@@ -1,0 +1,17 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t khan/docker-fib-react -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true khan/docker-fib-react npm run test
+
+
+after-success:
+  - docker build -t khan/multi-client ./client
+  - docker build -t khan/multi-nginx ./nginx
+  - docker build -t khan/multi-server ./server
+  - docker build -t khan/multi-worker ./worker
